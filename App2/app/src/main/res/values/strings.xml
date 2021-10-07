@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Calculator</string>
-    <string name="textLogo">Weaver in your city</string>
-    <string name="hintUserTilt">Enter city</string>
-    <string name="textMainBtn">See weaver</string>
-    <string name="noUserInput">Err! Enter city</string>
-</resources>
