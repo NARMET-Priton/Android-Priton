@@ -1,7 +1,6 @@
 package it.volta.ts.smirnovartur.calculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         mainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {   // Обработчик события
+            public void onClick(View view) {                                                         // Обработчик события
                 if (appUserField.getText().toString().trim().equals(""))
                     Toast.makeText(MainActivity.this, R.string.noUserInput, Toast.LENGTH_LONG).show();
-                else{
+                else {
                     String city = appUserField.getText().toString();
                     String key = "a7fea4c398bf4f3d6dad93ba4e78b0de";
                     String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key + "&units=metric";
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPreExecute() {
             super.onPreExecute();
-            resultInfo.setText("Loading…");
+            resultInfo.setText("Loading...");
         }
 
         @Override
@@ -62,17 +66,17 @@ public class MainActivity extends AppCompatActivity {
             BufferedReader reader = null;
 
             try {
-                URL url = new URL(strings[0]);                                 // Откритые URL соединение
-                connection = (HttpURLConnection) url.openConnection();         //Откритые http соединения
+                URL url = new URL(strings[0]);                                                       // Откритые URL соединение
+                connection = (HttpURLConnection) url.openConnection();                               //Откритые http соединения
                 connection.connect();
 
-                InputStream stream = connection.getInputStream();              // Считывание потока
+                InputStream stream = connection.getInputStream();                                     // Считывание потока
                 reader = new BufferedReader(new InputStreamReader(stream));
 
                 StringBuffer buffer = new StringBuffer();
                 String str = "";
 
-                while((str = reader.readLine()) != null){
+                while ((str = reader.readLine()) != null) {
                     buffer.append(str).append("\n");
                 }
 
@@ -82,25 +86,37 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
-                if(connection != null)
+            } finally {
+                if (connection != null)
                     connection.disconnect();
 
-                try{
-                    if(reader != null)
+                try {
+                    if (reader != null)
                         reader.close();
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             return null;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
-        protected void onPostExecute(String result){
+        protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            resultInfo.setText(result);
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                resultInfo.setText(
+                        "Temperature: " + jsonObject.getJSONObject("main").getDouble("temp")
+                                + "\n" + "Feels like: " + jsonObject.getJSONObject("main").getDouble("feels_like")
+//                              + "\n" + "Weaver" + jsonObject.getJSONObject("weather").getJSONObject("0").getString("description")
+                );
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }
 }
