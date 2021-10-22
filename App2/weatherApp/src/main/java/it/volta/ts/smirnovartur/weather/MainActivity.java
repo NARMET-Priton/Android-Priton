@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 resultInfo.setText(
                         "Temperature: " + jsonObject.getJSONObject("main").getDouble("temp")
                                 + "\n" + "Feels like: " + jsonObject.getJSONObject("main").getDouble("feels_like")
-//                              + "\n" + "Weather" + jsonObject.getJSONObject("weather").getJSONObject("0").getString("description")
+                                + "\n" + "Weather: " + jsonObject.getJSONArray("weather").getJSONObject(0).getString("description")
                 );
             } catch (JSONException e) {
                 e.printStackTrace();
