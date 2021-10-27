@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         switch (view.getId()){
             case R.id.btnRecursionPalindrome:
                 Intent intent1 = new Intent(this, ActivityRecursionPalindrome.class);
