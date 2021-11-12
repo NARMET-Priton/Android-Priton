@@ -2,9 +2,22 @@
     <string name="app_name">MainApplication</string>
     <string name="btnRecursionPalindrome_name">Recursion Palindrome</string>
     <string name="btnWeather">Weather</string>
+    <string name="btnVerifica1">Verifica 1</string>
 
     <string name="textLogo">Weather in your city</string>
     <string name="hintUserTilt">Enter city</string>
     <string name="textMainBtn">See weather</string>
     <string name="noUserInput">Err! Enter city</string>
+
+<!--    Verifica 1     -->
+    <string name="textHead">Enter 2 numbers</string>
+    <string name="textHint1">First number</string>
+    <string name="textHint2">Second number</string>
+    <string name="textMiddle">
+        The first number is divided by the second:\n<string name="A">0</string> times;\n\n
+        Сube radical of the first number:\n<string name="B">0.0000</string> times;\n\n
+        Logarithm of the first number:\n<string name="C">0.00000</string> times;\n\n
+    </string>
+    <string name="textExit">Exit</string>
+
 </resources>
