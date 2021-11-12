@@ -3,12 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.23055555555555557" />
-        <entry key="app/src/main/res/layout/activity_calculator.xml" value="0.2831704186913107" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22382865184747028" />
-        <entry key="app/src/main/res/layout/activity_verifica1.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_verifica1.xml" value="0.29183606239760934" />
         <entry key="app/src/main/res/layout/activity_weather.xml" value="0.47470238095238093" />
-        <entry key="app/src/main/res/layout/main_activity.xml" value="0.1" />
       </map>
     </option>
   </component>

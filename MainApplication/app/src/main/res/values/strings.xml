@@ -14,9 +14,9 @@
     <string name="textHint1">First number</string>
     <string name="textHint2">Second number</string>
     <string name="textMiddle">
-        The first number is divided by the second:\n<string name="A">0</string> times;\n\n
-        Сube radical of the first number:\n<string name="B">0.0000</string> times;\n\n
-        Logarithm of the first number:\n<string name="C">0.00000</string> times;\n\n
+        The first number is divided by the second:\n null?  times;\n\n
+        Сube radical of the first number:\n null??  times;\n\n
+        Logarithm of the first number:\n null???  times;\n\n
     </string>
     <string name="textExit">Exit</string>
 
