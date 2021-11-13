@@ -3,7 +3,6 @@ package it.volta.ts.smirnovartur.mainapplication.weatherActivity;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +26,6 @@ import it.volta.ts.smirnovartur.mainapplication.R;
 public class ActivityWeather extends AppCompatActivity {
 
     private EditText appUserField;
-    private Button mainBtn;
     private TextView resultInfo;
 
     @Override
@@ -36,27 +34,26 @@ public class ActivityWeather extends AppCompatActivity {
         setContentView(R.layout.activity_weather);
 
         appUserField = findViewById(R.id.appUserField);
-        mainBtn = findViewById(R.id.mainBtn);
+        Button mainBtn = findViewById(R.id.mainBtn);
         resultInfo = findViewById(R.id.resultInfo);
 
-        mainBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {                                                         // Обработчик события
-                if (appUserField.getText().toString().trim().equals(""))
-                    Toast.makeText(ActivityWeather.this, R.string.noUserInput, Toast.LENGTH_LONG).show();
-                else {
-                    String city = appUserField.getText().toString();
-                    String key = "a7fea4c398bf4f3d6dad93ba4e78b0de";
-                    String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key + "&units=metric";
+        mainBtn.setOnClickListener(view -> {                                                         // Обработчик события
+            if (appUserField.getText().toString().trim().equals(""))
+                Toast.makeText(ActivityWeather.this, R.string.noUserInput, Toast.LENGTH_LONG).show();
+            else {
+                String city = appUserField.getText().toString();
+                String key = "a7fea4c398bf4f3d6dad93ba4e78b0de";
+                String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key + "&units=metric";
 
-                    new GetURLData().execute(url);
-                }
+                new GetURLData().execute(url);
             }
         });
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class GetURLData extends AsyncTask<String, String, String> {
 
+        @SuppressLint("SetTextI18n")
         protected void onPreExecute() {
             super.onPreExecute();
             resultInfo.setText("Loading...");

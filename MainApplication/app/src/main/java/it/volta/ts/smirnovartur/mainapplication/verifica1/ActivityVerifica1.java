@@ -1,13 +1,12 @@
 package it.volta.ts.smirnovartur.mainapplication.verifica1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import it.volta.ts.smirnovartur.mainapplication.R;
 
@@ -28,23 +27,18 @@ public class ActivityVerifica1 extends AppCompatActivity {
         countButton    = findViewById(R.id.CountButton);
         exitButton     = findViewById(R.id.ExitButton);
 
-        countButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                middleTextView.setText(R.string.textMiddle);
-                if (checkNums()){
-                    Counts counts = new Counts(Integer.parseInt(inputEditText1.getText().toString()), Integer.parseInt(inputEditText2.getText().toString()));
+        countButton.setOnClickListener(view -> {
+            middleTextView.setText(R.string.textMiddle);
+            if (checkNums()){
+                Counts counts = new Counts(Integer.parseInt(inputEditText1.getText().toString()), Integer.parseInt(inputEditText2.getText().toString()));
 
-                    middleTextView.setText(middleTextView.getText().toString().replace(" null? ", String.valueOf(counts.div())));
-                    middleTextView.setText(middleTextView.getText().toString().replace(" null?? ", String.valueOf(counts.sqrt())));
-                    middleTextView.setText(middleTextView.getText().toString().replace(" null??? ", String.valueOf(counts.log())));
-                }
+                middleTextView.setText(middleTextView.getText().toString().replace(" null? ", String.valueOf(counts.div())));
+                middleTextView.setText(middleTextView.getText().toString().replace(" null?? ", String.valueOf(counts.sqrt())));
+                middleTextView.setText(middleTextView.getText().toString().replace(" null??? ", String.valueOf(counts.log())));
             }
         });
 
-        exitButton.setOnClickListener(view -> {
-            finish();
-        });
+        exitButton.setOnClickListener(view -> finish());
     }
 
     protected boolean checkNums(){

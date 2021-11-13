@@ -1,17 +1,16 @@
 package it.volta.ts.smirnovartur.mainapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import it.volta.ts.smirnovartur.mainapplication.recursionPalindromeActivity.ActivityRecursionPalindrome;
 import it.volta.ts.smirnovartur.mainapplication.verifica1.ActivityVerifica1;
-//import it.volta.ts.smirnovartur.mainapplication.weatherActivity.ActivityWeather;
+import it.volta.ts.smirnovartur.mainapplication.weatherActivity.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btnWeather:
-//                intent = new Intent(this, ActivityWeather.class);
-//                startActivity(intent);
+                intent = new Intent(this, ActivityWeather.class);
+                startActivity(intent);
                 break;
             case R.id.btnVerifica1:
                 intent = new Intent(this, ActivityVerifica1.class);
