@@ -15,9 +15,6 @@
             android:name=".verifica1.ActivityVerifica1"
             android:exported="false" />
         <activity
-            android:name=".calculatorActivity.calculator.ActivityCalculator"
-            android:exported="false" />
-        <activity
             android:name=".weatherActivity.ActivityWeather"
             android:label="Weather in City" />
         <activity
