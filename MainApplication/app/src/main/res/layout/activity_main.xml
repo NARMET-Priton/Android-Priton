@@ -18,11 +18,27 @@
 
     <Button
         android:id="@+id/btnWeather"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60sp"
+
+        android:layout_marginTop="25sp"
+        android:layout_below="@id/btnRecursionPalindrome"
         android:layout_centerHorizontal="true"
+
         android:text="@string/btnWeather"
+        />
+    <Button
+        android:id="@+id/btnVerifica1"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="25sp"
+        android:layout_below="@id/btnWeather"
+        android:layout_centerHorizontal="true"
+
+        android:text="Vierifica 1"
         />
 
 
