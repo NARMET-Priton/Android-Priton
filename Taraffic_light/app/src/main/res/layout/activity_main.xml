@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/logo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <TextView
+        android:id="@+id/build_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/Logo"
+        android:layout_marginHorizontal="150dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/purple_200" />
+
+    <TextView
+        android:id="@+id/build_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/build_1"
+        android:layout_marginHorizontal="150dp"
+        android:background="@color/purple_200"
+         />
+
+
+    <TextView
+        android:id="@+id/build_3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/build_2"
+        android:layout_marginHorizontal="150dp"
+        android:background="@color/purple_200"
+        />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/build_3"
+        android:layout_marginHorizontal="150dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/black"
+        android:onClick="onClickStart"
+        android:text="Start" />
+</RelativeLayout>
