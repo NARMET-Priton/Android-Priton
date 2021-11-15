@@ -57,7 +57,7 @@ public class ActivityVerifica1 extends AppCompatActivity {
     }
 }
 
-class Counts{
+class Counts {
 
     private final int num_1;
     private final int num_2;

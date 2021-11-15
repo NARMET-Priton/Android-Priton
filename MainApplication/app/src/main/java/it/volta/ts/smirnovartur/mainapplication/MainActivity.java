@@ -8,8 +8,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import it.volta.ts.smirnovartur.mainapplication.recursionPalindromeActivity.ActivityRecursionPalindrome;
-import it.volta.ts.smirnovartur.mainapplication.verifica1.ActivityVerifica1;
+import it.volta.ts.smirnovartur.mainapplication.recursionPalindromeActivity.*;
+import it.volta.ts.smirnovartur.mainapplication.verifica1.*;
 import it.volta.ts.smirnovartur.mainapplication.weatherActivity.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
