@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MainApplication">
         <activity
+            android:name=".list.ActivityList"
+            android:exported="false" />
+        <activity
             android:name=".verifica1.ActivityVerifica1"
             android:exported="false" />
         <activity
