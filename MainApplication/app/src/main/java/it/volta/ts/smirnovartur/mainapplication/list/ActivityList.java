@@ -1,9 +1,7 @@
 package it.volta.ts.smirnovartur.mainapplication.list;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +10,7 @@ import android.widget.TextView;
 
 import it.volta.ts.smirnovartur.mainapplication.R;
 import it.volta.ts.smirnovartur.mainapplication.list.db.Person;
-import it.volta.ts.smirnovartur.mainapplication.list.db.PersonDB;
-import it.volta.ts.smirnovartur.mainapplication.recursionPalindromeActivity.ActivityRecursionPalindrome;
-import it.volta.ts.smirnovartur.mainapplication.verifica1.ActivityVerifica1;
-import it.volta.ts.smirnovartur.mainapplication.weatherActivity.ActivityWeather;
+import it.volta.ts.smirnovartur.mainapplication.list.db.PersonList;
 
 public class ActivityList extends AppCompatActivity {
 
@@ -23,8 +18,8 @@ public class ActivityList extends AppCompatActivity {
     Button   buttonAddInDB;
     TextView viewDBout;
 
-    Person person;
-    PersonDB personDB;
+    Person     person;
+    PersonList personList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +31,7 @@ public class ActivityList extends AppCompatActivity {
         buttonAddInDB     = findViewById(R.id.buttonAddInDB);
         viewDBout         = findViewById(R.id.viewDBout);
 
-        personDB = new PersonDB();
+        personList = new PersonList();
 
         buttonAddInDB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,10 +39,8 @@ public class ActivityList extends AppCompatActivity {
                 person = new Person();
                 person.setPersonData(inputTextName.getText().toString(), inputTextLastname.getText().toString());
 
-                personDB.addNewPerson(person);
-                personDB.sortPersonDB();
-
-                viewDBout.setText(personDB.getDB());
+                personList.addNewPerson(person);
+                viewDBout.setText(personList.getPersonList());
             }
         });
     }
