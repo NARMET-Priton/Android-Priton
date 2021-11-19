@@ -30,11 +30,12 @@ public class ActivityVerifica1 extends AppCompatActivity {
         countButton.setOnClickListener(view -> {
             middleTextView.setText(R.string.textMiddle);
             if (checkNums()){
-                Counts counts = new Counts(Integer.parseInt(inputEditText1.getText().toString()), Integer.parseInt(inputEditText2.getText().toString()));
+                int num_1 = Integer.parseInt(inputEditText1.getText().toString()),
+                    num_2 = Integer.parseInt(inputEditText2.getText().toString());
 
-                middleTextView.setText(middleTextView.getText().toString().replace(" null? ", String.valueOf(counts.div())));
-                middleTextView.setText(middleTextView.getText().toString().replace(" null?? ", String.valueOf(counts.sqrt())));
-                middleTextView.setText(middleTextView.getText().toString().replace(" null??? ", String.valueOf(counts.log())));
+                middleTextView.setText(middleTextView.getText().toString().replace(" null? ", String.valueOf(Counts.div(num_1, num_2))));
+                middleTextView.setText(middleTextView.getText().toString().replace(" null?? ", String.valueOf(Counts.sqrt3(num_1, 4))));
+                middleTextView.setText(middleTextView.getText().toString().replace(" null??? ", String.valueOf(Counts.log10(num_1, 5))));
             }
         });
 
@@ -57,25 +58,100 @@ public class ActivityVerifica1 extends AppCompatActivity {
     }
 }
 
+
 class Counts {
 
-    private final int num_1;
-    private final int num_2;
+        public static int div (double numero, double divisore)
+        {
+            int result = 0;
 
-    Counts (int num_1, int num_2){
-        this.num_1 = num_1;
-        this.num_2 = num_2;
-    }
-    protected int div (){
-        return num_2 == 0? 0 : num_1/num_2;
-    }
+            if (divisore > 0)
+            {
+                if (numero == 0)
+                    result = 1;
+                else if (numero % divisore == 0)
+                    result = result + 1 + div(numero / divisore, divisore);
+            }
+            return result;
+        }
 
-    protected double sqrt (){
-        double a = Math.pow(num_1, 1.0 / 3.0);
-        return Math.round(a * 10000.0) / 10000.0;
-    }
+        public static double sqrt2(double numero, int numDecimali)
+        {
+            boolean esci     = false;
+            double  result   = 0d;
+            double  decimale = 1d;
 
-    protected double log (){
-        return Math.round(Math.log(num_1) / Math.log(10) * 100000.0) / 100000.0 ;
+            for (int idx=0; idx < numDecimali; idx++)
+                decimale /= 10d;
+
+            while (!esci)
+            {
+                double quadrato = result * result;
+
+                if (quadrato == numero)
+                    esci = true;
+                else if (quadrato < numero)
+                    result += decimale;
+                else {
+                    result -= decimale;
+                    esci = true;
+                }
+            }
+
+            return result;
+        }
+
+        public static double sqrt3(double numero, int numDecimali)
+        {
+            boolean esci     = false;
+            double   result   = 0d;
+            double   decimale = 1d;
+
+            for (int idx=0; idx < numDecimali; idx++)
+                decimale /= 10d;
+
+            while (!esci)
+            {
+                double cubo = result * result * result;
+
+                if (cubo == numero)
+                    esci = true;
+                else if (cubo < numero)
+                    result += decimale;
+                else {
+                    result -= decimale;
+                    esci = true;
+                }
+            }
+
+            return result;
+        }
+
+
+        public static double log10(double numero, int numDecimali)
+        {
+            boolean esci     = false;
+            double  result   = 0d;
+            double  decimale = 1d;
+
+            for (int idx=0; idx < numDecimali; idx++)
+                decimale /= 10d;
+
+            while (!esci)
+            {
+                double quadrato = Math.pow(10d, decimale);
+
+                if (quadrato == numero)
+                    esci = true;
+                else if (quadrato < numero)
+                    result += decimale;
+                else {
+                    result -= decimale;
+                    esci = true;
+                }
+            }
+
+            return result;
+        }
+
     }
-}
