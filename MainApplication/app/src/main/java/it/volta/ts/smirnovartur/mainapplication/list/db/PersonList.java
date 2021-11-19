@@ -5,12 +5,11 @@ public class PersonList {
     // 1) Связать персон между собой   X
     // 1.1) Вывести на экран           X
 
-    // 2) Отсортировать персон по фамилии
-    // 2.1) Вывести на экран
+    // 2) Отсортировать персон по фамилии   X
+    // 2.1) Вывести на экран                X
 
     // 3) Отсортировать персон первостепенно по фамилии и второстепенно по имени
     // 3.1) Вывести на экран
-
 
 
     // попробовать сделать сортировку сразу при вводе
@@ -33,6 +32,29 @@ public class PersonList {
             tempPerson = person;
         }
     }
+
+//    public void sort (Person person) {
+//        Person temp = firstPerson.getNextPerson();
+//        int action = 0;
+//        // 1  - first > second
+//        // 0  - first == second
+//        // -1 - second < first
+//
+//        while (temp.getNextPerson() != null){
+//            for (int i = 0; (i < temp.getPersonLastname().length()) && (i < temp.getNextPerson().getPersonLastname().length()); i++) {
+//                if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) == temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
+//                    action = 0;;
+//                    continue;
+//                } else if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) < temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
+//                    action = 1;
+//                    break;
+//                } else if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) > temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
+//                    action = -1;
+//                    break;
+//                }
+//            }
+//        }
+//    }
 
     // Change positions of persons Version
 //    public void alphSortPearsonList() {
@@ -80,45 +102,47 @@ public class PersonList {
     // Метод работает исправно
     // добавить в case 1 и 0 дополнительную проверку для имени
 
-    // Change value of persons VersionSgit 
+    // Change value of persons Version
     public void alphSortPearsonList() {
-        Person temp = firstPerson;
+        Person temp = firstPerson.getNextPerson();
         int action = 0;
         // 1  - first > second
         // 0  - first == second
         // -1 - second < first
 
         while (temp.getNextPerson() != null) {
-            if (temp.getPersonLastname() != null && temp.getNextPerson().getPersonLastname() != null) {
-                for (int i = 0; (i < temp.getPersonLastname().length()) && (i < temp.getNextPerson().getPersonLastname().length()); i++) {
-                    if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) == temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
-                        action = 0;;
-                        continue;
-                    } else if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) < temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
-                        action = 1;
-                        break;
-                    } else if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) > temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
-                        action = -1;
-                        break;
+            while (temp.getNextPerson() != null) {
+                if (temp.getPersonLastname() != null && temp.getNextPerson().getPersonLastname() != null) {
+                    for (int i = 0; (i < temp.getPersonLastname().length()) && (i < temp.getNextPerson().getPersonLastname().length()); i++) {
+                        if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) == temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
+                            action = 0;
+                            continue;
+                        } else if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) < temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
+                            action = 1;
+                            break;
+                        } else if (temp.getPersonLastname().charAt(Math.min(i, temp.getPersonLastname().length())) > temp.getNextPerson().getPersonLastname().charAt(Math.min(i, temp.getNextPerson().getPersonLastname().length()))) {
+                            action = -1;
+                            break;
+                        }
+                    }
+                    switch (action) {
+                        case 1:
+                            System.out.println("Result = " + action);
+                            break;
+                        case 0:
+                            System.out.println("Result = " + action);
+                            break;
+                        case -1:
+                            System.out.println("Result = " + action);
+
+                            String toSwapPerson = temp.getPersonLastname();
+                            temp.setPersonLastname(temp.getNextPerson().getPersonLastname());
+                            temp.getNextPerson().setPersonLastname(toSwapPerson);
+                            break;
                     }
                 }
-                switch (action){
-                    case 1:
-                        System.out.println("Result = " + action);
-                        break;
-                    case 0:
-                        System.out.println("Result = " + action);
-                        break;
-                    case -1:
-                        System.out.println("Result = " + action);
-
-                        String toSwapPerson = temp.getPersonLastname();
-                        temp.setPersonLastname(temp.getNextPerson().getPersonLastname());
-                        temp.getNextPerson().setPersonLastname(toSwapPerson);
-                        break;
-                }
+                temp = temp.getNextPerson();
             }
-            temp = temp.getNextPerson();
         }
     }
 
