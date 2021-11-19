@@ -13,13 +13,21 @@ public class Person {
     }
 
     public String getPersonData(){
-        return "\nName: " + name + " LastName: " + lastname;
+        return "\nLastName: " + lastname + " Name: " + name;
     }
 
-    // Lastname, name Person O
+    // Lastname I/O
+    public void setPersonLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
     public String getPersonLastname() {
         return lastname;
+    }
+
+    // Name I/O
+    public void setPersonName(String name) {
+        this.name = name;
     }
 
     public String getPersonName() {
@@ -27,7 +35,6 @@ public class Person {
     }
 
     // Next Person I/O
-
     public void setNextPerson(Person person) {
         this.nextPerson = person;
     }
