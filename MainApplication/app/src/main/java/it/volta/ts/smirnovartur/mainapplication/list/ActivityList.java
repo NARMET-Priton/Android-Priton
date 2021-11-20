@@ -40,7 +40,7 @@ public class ActivityList extends AppCompatActivity {
                 person.setPersonData(inputTextName.getText().toString(), inputTextLastname.getText().toString());
 
                 personList.addNewPerson(person);
-                personList.alphSortPearsonList();
+//                personList.alphSortPearsonList();
                 viewDBout.setText(personList.getPersonList());
             }
         });
