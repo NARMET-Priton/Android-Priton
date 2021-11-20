@@ -4,6 +4,7 @@ public class Person {
     // Struct
     private String name, lastname;
     private Person nextPerson;
+    // добавить counter
 
     // Person Data I/O
     public void setPersonData(String name, String lastname) {
@@ -17,19 +18,11 @@ public class Person {
     }
 
     // Lastname I/O
-    public void setPersonLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getPersonLastname() {
         return lastname;
     }
 
     // Name I/O
-    public void setPersonName(String name) {
-        this.name = name;
-    }
-
     public String getPersonName() {
         return name;
     }

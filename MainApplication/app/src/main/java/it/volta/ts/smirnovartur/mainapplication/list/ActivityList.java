@@ -39,8 +39,8 @@ public class ActivityList extends AppCompatActivity {
                 person = new Person();
                 person.setPersonData(inputTextName.getText().toString(), inputTextLastname.getText().toString());
 
+                System.out.println("NEW TEXT--------" + person.getPersonData());
                 personList.addNewPerson(person);
-//                personList.alphSortPearsonList();
                 viewDBout.setText(personList.getPersonList());
             }
         });
