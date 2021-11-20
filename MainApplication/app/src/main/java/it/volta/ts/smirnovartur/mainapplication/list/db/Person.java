@@ -1,20 +1,26 @@
 package it.volta.ts.smirnovartur.mainapplication.list.db;
 
+import androidx.annotation.NonNull;
+
 public class Person {
     // Struct
     private String name, lastname;
     private Person nextPerson;
-    // добавить counter
+    private int id = 0;
 
     // Person Data I/O
     public void setPersonData(String name, String lastname) {
-        this.name       = name;
-        this.lastname   = lastname;
+        this.name = name;
+        this.lastname = lastname;
         this.nextPerson = null;
+        id++;
     }
 
-    public String getPersonData(){
-        return "\nLastName: " + lastname + " Name: " + name;
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "\n [" + id + "] " + lastname + " " + name;
     }
 
     // Lastname I/O

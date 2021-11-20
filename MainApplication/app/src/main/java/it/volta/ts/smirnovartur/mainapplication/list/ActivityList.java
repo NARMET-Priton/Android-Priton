@@ -1,12 +1,12 @@
 package it.volta.ts.smirnovartur.mainapplication.list;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import it.volta.ts.smirnovartur.mainapplication.R;
 import it.volta.ts.smirnovartur.mainapplication.list.db.Person;
@@ -15,10 +15,10 @@ import it.volta.ts.smirnovartur.mainapplication.list.db.PersonList;
 public class ActivityList extends AppCompatActivity {
 
     EditText inputTextName, inputTextLastname;
-    Button   buttonAddInDB;
+    Button buttonAddInDB;
     TextView viewDBout;
 
-    Person     person;
+    Person person;
     PersonList personList;
 
     @Override
@@ -26,10 +26,10 @@ public class ActivityList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        inputTextName     = findViewById(R.id.inputTextName);
+        inputTextName = findViewById(R.id.inputTextName);
         inputTextLastname = findViewById(R.id.inputTextLastname);
-        buttonAddInDB     = findViewById(R.id.buttonAddInDB);
-        viewDBout         = findViewById(R.id.viewDBout);
+        buttonAddInDB = findViewById(R.id.buttonAddInDB);
+        viewDBout = findViewById(R.id.viewDBout);
 
         personList = new PersonList();
 
@@ -39,9 +39,12 @@ public class ActivityList extends AppCompatActivity {
                 person = new Person();
                 person.setPersonData(inputTextName.getText().toString(), inputTextLastname.getText().toString());
 
-                System.out.println("NEW TEXT--------" + person.getPersonData());
+                // записать как формат логов
+                System.out.println("NEW TEXT--------" + person.toString());
+
                 personList.addNewPerson(person);
                 viewDBout.setText(personList.getPersonList());
+
             }
         });
     }

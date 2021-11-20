@@ -9,33 +9,39 @@ public class PersonList {
     // добавить вторичную проверку по имени
 
     public PersonList() {
-        firstPerson = new Person();  // HEAD (link)
+        firstPerson = new Person();                 // HEAD (link)
         tempPerson = new Person();
     }
 
     public void addNewPerson(Person person) {
-        if (firstPerson.getNextPerson() == null) {
+        if (firstPerson.getNextPerson() == null) {  // Если это первый элемент в списке
             firstPerson.setNextPerson(person);
             tempPerson = person;
-        } else {
+        } else {                                    // Если это второй элемент в списке
             newSortedPerson(person);
         }
     }
 
     public void newSortedPerson(Person person) {
-        Person temp = firstPerson.getNextPerson();
-        Person hash = firstPerson;
-        int action = 0;
+        Person temp = firstPerson.getNextPerson();  // Элемент с которым сравниваем
+        Person hash = firstPerson;                  // Элемент перед temp, с которым сравниваем
 
-        if (temp.getNextPerson() == null) {
-            for (int i = 0; (i < temp.getPersonLastname().length()) && (i < person.getPersonLastname().length()); i++) {
+        int action = 0;
+                                                    /*
+                                                       1 - person > temp
+                                                       0 - person == temp
+                                                      -1 - person < temp
+                                                    */
+
+        do {
+            for (int i = 0; (i < temp.getPersonLastname().length()) || (i < person.getPersonLastname().length()); i++) {
                 if (person.getPersonLastname().toLowerCase(Locale.ROOT).compareTo(temp.getPersonLastname().toLowerCase(Locale.ROOT)) == 0) {
                     action = 0;
                     continue;
                 }
                 if (person.getPersonLastname().toLowerCase(Locale.ROOT).compareTo(temp.getPersonLastname().toLowerCase(Locale.ROOT)) > 0) {
                     action = 1;
-                    break;
+                    continue;
                 }
                 if (person.getPersonLastname().toLowerCase(Locale.ROOT).compareTo(temp.getPersonLastname().toLowerCase(Locale.ROOT)) < 0) {
                     action = -1;
@@ -44,54 +50,22 @@ public class PersonList {
             }
             switch (action) {
                 case 1:
+                    temp = temp.getNextPerson();
+                    hash = hash.getNextPerson();
+                    continue;
                 case 0:
+                    person.setNextPerson(temp.getNextPerson());
                     temp.setNextPerson(person);
-                    break;
+                    return;
                 case -1:
-                    firstPerson.setNextPerson(person);
                     person.setNextPerson(temp);
-                    temp.setNextPerson(null);
-                    break;
+                    hash.setNextPerson(person);
+                    return;
             }
-        } else {
-            do {
-                for (int i = 0; (i < temp.getPersonLastname().length()) || (i < person.getPersonLastname().length()); i++) {
-                    if (person.getPersonLastname().toLowerCase(Locale.ROOT).compareTo(temp.getPersonLastname().toLowerCase(Locale.ROOT)) == 0) {
-                        action = 0;
-                        continue;
-                    }
-                    if (person.getPersonLastname().toLowerCase(Locale.ROOT).compareTo(temp.getPersonLastname().toLowerCase(Locale.ROOT)) > 0) {
-                        action = 1;
-                        continue;
-                    }
-                    if (person.getPersonLastname().toLowerCase(Locale.ROOT).compareTo(temp.getPersonLastname().toLowerCase(Locale.ROOT)) < 0) {
-                        action = -1;
-                        break;
-                    }
-                }
-                switch (action) {
-                    case 1:
-                        temp = temp.getNextPerson();
-                        hash = hash.getNextPerson();
-                        continue;
-                    case 0:
-                        person.setNextPerson(temp.getNextPerson());
-                        temp.setNextPerson(person);
-                        return;
-                    case -1:
-                        // отрезает всех выше
-                        person.setNextPerson(temp);
-                        hash.setNextPerson(person);
-                        return;
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + action);
-                }
-            } while (hash.getNextPerson() != null);
+        } while (hash.getNextPerson() != null);
 
-            // Если не сработает return;
-            hash.setNextPerson(person);
+        hash.setNextPerson(person);                 // Если не сработает return;
 
-        }
     }
 
 
@@ -101,8 +75,8 @@ public class PersonList {
 
         while (temp.getNextPerson() != null) {
             temp = temp.getNextPerson();
-            if (temp.getPersonData() != null) {
-                str.append(temp.getPersonData());
+            if (!temp.getPersonLastname().equals("") && !temp.getPersonName().equals("")) {
+                str.append(temp.toString());
             }
         }
         return str.toString();
