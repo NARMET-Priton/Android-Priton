@@ -4,19 +4,15 @@ import java.util.Locale;
 
 public class PersonList {
 
-    Person firstPerson, tempPerson;
-
-    // добавить вторичную проверку по имени
+    private final Person firstPerson;
 
     public PersonList() {
         firstPerson = new Person();                 // HEAD (link)
-        tempPerson = new Person();
     }
 
     public void addNewPerson(Person person) {
         if (firstPerson.getNextPerson() == null) {  // Если это первый элемент в списке
             firstPerson.setNextPerson(person);
-            tempPerson = person;
         } else {                                    // Если это второй элемент в списке
             newSortedPerson(person);
         }
@@ -54,8 +50,39 @@ public class PersonList {
                     hash = hash.getNextPerson();
                     continue;
                 case 0:
-                    person.setNextPerson(temp.getNextPerson());
-                    temp.setNextPerson(person);
+                    do {
+                        for (int i = 0; (i < temp.getPersonName().length()) || (i < person.getPersonName().length()); i++) {
+                            if (person.getPersonName().toLowerCase(Locale.ROOT).compareTo(temp.getPersonName().toLowerCase(Locale.ROOT)) == 0) {
+                                action = 0;
+                                continue;
+                            }
+                            if (person.getPersonName().toLowerCase(Locale.ROOT).compareTo(temp.getPersonName().toLowerCase(Locale.ROOT)) > 0) {
+                                action = 1;
+                                continue;
+                            }
+                            if (person.getPersonName().toLowerCase(Locale.ROOT).compareTo(temp.getPersonName().toLowerCase(Locale.ROOT)) < 0) {
+                                action = -1;
+                                break;
+                            }
+                        }
+                        switch (action) {
+                            case 1:
+                                temp = temp.getNextPerson();
+                                hash = hash.getNextPerson();
+                                continue;
+                            case 0:
+                                person.setNextPerson(temp.getNextPerson());
+                                temp.setNextPerson(person);
+                                return;
+                            case -1:
+                                person.setNextPerson(temp);
+                                hash.setNextPerson(person);
+                                return;
+                        }
+                    } while (hash.getNextPerson() != null);
+
+                    hash.setNextPerson(person);
+
                     return;
                 case -1:
                     person.setNextPerson(temp);
@@ -67,7 +94,6 @@ public class PersonList {
         hash.setNextPerson(person);                 // Если не сработает return;
 
     }
-
 
     public String getPersonList() {
         Person temp = firstPerson;

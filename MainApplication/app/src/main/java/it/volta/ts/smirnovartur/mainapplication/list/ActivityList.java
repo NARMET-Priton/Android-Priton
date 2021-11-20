@@ -1,6 +1,7 @@
 package it.volta.ts.smirnovartur.mainapplication.list;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,8 @@ public class ActivityList extends AppCompatActivity {
         buttonAddInDB = findViewById(R.id.buttonAddInDB);
         viewDBout = findViewById(R.id.viewDBout);
 
+        viewDBout.setMovementMethod(new ScrollingMovementMethod());
+
         personList = new PersonList();
 
         buttonAddInDB.setOnClickListener(new View.OnClickListener() {
@@ -39,8 +42,7 @@ public class ActivityList extends AppCompatActivity {
                 person = new Person();
                 person.setPersonData(inputTextName.getText().toString(), inputTextLastname.getText().toString());
 
-                // записать как формат логов
-                System.out.println("NEW TEXT--------" + person.toString());
+                System.out.println(" -------- NEW TEXT LOG -------- " + person.toString());
 
                 personList.addNewPerson(person);
                 viewDBout.setText(personList.getPersonList());
