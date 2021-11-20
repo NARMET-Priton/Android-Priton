@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import it.volta.ts.smirnovartur.mainapplication.list.ActivityList;
 import it.volta.ts.smirnovartur.mainapplication.recursionPalindromeActivity.*;
 import it.volta.ts.smirnovartur.mainapplication.verifica1.*;
 import it.volta.ts.smirnovartur.mainapplication.weatherActivity.*;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnRecursionPalindrome).setOnClickListener(this);
         findViewById(R.id.btnWeather).setOnClickListener(this);
         findViewById(R.id.btnVerifica1).setOnClickListener(this);
+        findViewById(R.id.btnList).setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -39,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnVerifica1:
                 intent = new Intent(this, ActivityVerifica1.class);
+                startActivity(intent);
+                break;
+            case R.id.btnList:
+                intent = new Intent(this, ActivityList.class);
                 startActivity(intent);
                 break;
             default:
